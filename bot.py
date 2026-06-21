@@ -65,7 +65,7 @@ def send_email(summary_text):
 
     with smtplib.SMTP_SSL('smtp.gmail.com',465) as server:
         server.login(sender,password)
-        server.send_messsage(msg)
+        server.send_message(msg)
     print("Email sent")
 
 
