@@ -23,7 +23,9 @@ jobs:
 
       - name: Run Pulse Bot
         env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          RECIEVER_EMAIL: ${{ secrets.RECIEVER_EMAIL }}
         run: python bot.py
   
       - name: Upload summary as artifact
