@@ -1,4 +1,4 @@
-###
+"""
 def greet(name):
     result=f"Good morning, {name}!"
     return result
@@ -11,6 +11,15 @@ def gambler(name,id):
     message= f"User id :{id}"
     return result ,message
 print(gambler("Arjun","cobra"))
-###
 
-print 
+
+
+
+try:
+    result=risky_function()
+    
+except Exception as e:
+    print("something went wrong: ", {e})
+
+    wttr.in/<city>?format=3
+"""
