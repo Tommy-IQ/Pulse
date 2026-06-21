@@ -1,6 +1,10 @@
 import requests
 from datetime import date
 
+import smtplib
+from email.mime.text import MIMEText
+import os
+
 def get_weather(city="Alappuzha"):
     #fetches todays weather as a one line text summary
     url=f"https://wttr.in/{city}?format=3"
@@ -50,24 +54,6 @@ TODAY'S QUOTE
         return summary
 
 
-def run():
-    """Main entry point. Called by GotHub Actions."""
-    summary=build_summary()
-    print(summary)
-
-    with open("daily summary.txt","w", encoding="utf-8") as f:
-        f.write(summary)
-    print("Pulse ran successfully.")
-
-if __name__=="__main__":
-    run()
-
-
-
-import smtplib
-from email.mime.text import MIMEText
-import os
-
 def send_email(summary_text):
     sender=os.environ.get("SENDER_EMAIL")
     password=os.environ.get("EMAIL_PASSWORD")
@@ -81,6 +67,25 @@ def send_email(summary_text):
         server.login(sender,password)
         server.send_messsage(msg)
     print("Email sent")
+
+
+def run():
+    """Main entry point. Called by GotHub Actions."""
+    summary=build_summary()
+    print(summary)
+
+    with open("daily summary.txt","w", encoding="utf-8") as f:
+        f.write(summary)
+    
+    send_email(summary)
+
+    print("Pulse ran successfully.")
+
+if __name__=="__main__":
+    run()
+
+
+
 
 
 
