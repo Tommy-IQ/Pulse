@@ -55,13 +55,32 @@ def run():
     summary=build_summary()
     print(summary)
 
-    with open("daily)summary.txt","w", encoding="utf-8") as f:
+    with open("daily summary.txt","w", encoding="utf-8") as f:
         f.write(summary)
-    print("Pusle ran successfully.")
+    print("Pulse ran successfully.")
 
 if __name__=="__main__":
     run()
 
+
+
+import smtplib
+from email.mime.text import MIMEText
+import os
+
+def send_email(summary_text):
+    sender=os.environ.get("SENDER_EMAIL")
+    password=os.environ.get("EMAIL_PASSWORD")
+    reciever=os.environ.get("RECIEVER_EMAIL")
+    msg=MIMEText(summary_text)
+    msg['Subject'] = "Pulse - Daily Summary"
+    msg['From'] = sender
+    msg['To'] = reciever
+
+    with smtplib.SMTP_SSL('smtp.gmail.com',465) as server:
+        server.login(sender,password)
+        server.send_messsage(msg)
+    print("Email sent")
 
 
 
