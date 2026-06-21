@@ -38,10 +38,10 @@ def build_summary():
         weather=get_weather()
         quote=get_quote()
         summary=f"""
-==========================================
+==============================
 PULSE - Daily Summary
  {today}
-==========================================
+==============================
 
 WEATHER
  {weather}
@@ -49,7 +49,7 @@ WEATHER
 TODAY'S QUOTE
  {quote}
 
-==========================================
+==============================
 """
         return summary
 
@@ -74,7 +74,7 @@ def run():
     summary=build_summary()
     print(summary)
 
-    with open("daily summary.txt","w", encoding="utf-8") as f:
+    with open("daily_summary.txt","w", encoding="utf-8") as f:
         f.write(summary)
     
     send_email(summary)
